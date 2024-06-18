@@ -11,9 +11,9 @@ public class Person
     public string Name { get; set; }
 
     [Required]
-    [StringLength(14, MinimumLength = 11, ErrorMessage = "Federal Document must contain between 11 and 14 characters.")]
+    [StringLength(14, MinimumLength = 11, ErrorMessage = "Nacional Document must contain between 11 and 14 characters.")]
     [RegularExpression(@"^\d+$")]
-    public string FederalDocument { get; set; }
+    public string Document { get; set; }
 
     [Required]
     [StringLength(250, MinimumLength = 1, ErrorMessage = "Email address must contain between 1 and 250 characters.")]

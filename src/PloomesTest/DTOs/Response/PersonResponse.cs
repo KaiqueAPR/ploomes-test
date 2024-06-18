@@ -1,8 +1,6 @@
-using System.ComponentModel.DataAnnotations;
+namespace PloomesTest.DTOs.Response;
 
-namespace PloomesTest.Models;
-
-public class Person
+public class PersonResponse
 {
     public long Id { get; set; }
     public string Name { get; set; }

@@ -5,18 +5,19 @@ using PloomesTest.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Start: Make connection with DB - SQL Server
 builder.Services.AddDbContext<PloomesTestContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
 });
-// End: Make connection with DB - SQL Server
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "PloomesTest.xml"), true);
+});
 
-builder.Services.AddScoped<IRegisterPerson, RegisterPerson>();
+builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 
 var app = builder.Build();

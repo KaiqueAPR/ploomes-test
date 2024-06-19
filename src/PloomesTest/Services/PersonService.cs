@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using PloomesTest.DTOs.Request;
 using PloomesTest.DTOs.Response;
 using PloomesTest.Models;
@@ -6,37 +5,20 @@ using PloomesTest.Repositories;
 
 namespace PloomesTest.Services;
 
-/// <summary>
-/// Service for managing Person entities.
-/// </summary>
-public class RegisterPerson : IRegisterPerson
+public class PersonService : IPersonService
 {
     private readonly IPersonRepository _personRepository;
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="RegisterPerson"/> class.
-    /// </summary>
-    /// <param name="personRepository">The repository for Person entities.</param>
-    public RegisterPerson(IPersonRepository personRepository)
+    public PersonService(IPersonRepository personRepository)
     {
         _personRepository = personRepository;
     }
 
-    /// <summary>
-    /// Retrieves a Person entity by its ID.
-    /// </summary>
-    /// <param name="id">The ID of the Person entity.</param>
-    /// <returns>A <see cref="ActionResult{T}"/> containing the Person entity if found; otherwise, NotFound.</returns>
-    public async Task<ActionResult<Person>> GetPersonById(long id)
+    public async Task<Person> GetPersonById(long id)
     {
         return await _personRepository.GetById(id);
     }
 
-    /// <summary>
-    /// Creates a new Person entity from the given request data.
-    /// </summary>
-    /// <param name="request">The request data to create a new Person entity.</param>
-    /// <returns>A response containing the created Person entity data.</returns>
     public async Task<PersonResponse> CreatePersonAsync(CreatePersonRequest request)
     {
         var person = new Person

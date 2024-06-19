@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PloomesTest.Models;
+using PloomesTest.Repositories;
+using PloomesTest.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,9 @@ builder.Services.AddDbContext<PloomesTestContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IRegisterPerson, RegisterPerson>();
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 
 var app = builder.Build();
 

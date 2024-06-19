@@ -2,8 +2,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PloomesTest.DTOs.Request;
 
-public class UpdatePerson
+public class CreatePersonRequest
 {
+    [Required]
+    public long Id { get; set; }
+
     [Required]
     public string Name { get; set; }
 

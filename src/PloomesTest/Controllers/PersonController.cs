@@ -7,11 +7,11 @@ using PloomesTest.DTOs.Response;
 /// </summary>
 [ApiController]
 [Route("api/person")]
-public class RegisterPersonController : ControllerBase
+public class PersonController : ControllerBase
 {
     private readonly IRegisterPerson _registerPerson;
 
-    public RegisterPersonController(IRegisterPerson personService)
+    public PersonController(IRegisterPerson personService)
     {
         _registerPerson = personService;
     }
@@ -99,7 +99,7 @@ public class RegisterPersonController : ControllerBase
         try
         {
             await _registerPerson.UpdatePerson(id, request);
-            return Ok($"The Person with ID equals to {id} was successfully changed!");
+            return Ok(new { Message = $"The Person with ID equals to {id} was successfully changed!" });
         }
         catch (KeyNotFoundException ex)
         {
